@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="screen-heading planner-heading">
+  <div><span class="eyebrow">WEEKLY VIEW</span><h1>Make space for what matters.</h1><p>Move through the week, select a day, or drag a task to a new time.</p></div>
+  <div class="heading-actions"><button class="button" id="plannerToday">Jump to today</button><button class="button button-primary" data-open-task><span data-glyph="plus"></span> Plan a task</button></div>
+</header>
+<section class="planner-board">
+  <div class="planner-board-head"><div class="planner-board-title"><span class="board-icon" data-glyph="calendar"></span><div><span class="eyebrow">YOUR CALENDAR</span><h2 id="weekLabel">This week</h2></div></div><div class="calendar-nav"><button id="weekPrev" aria-label="Previous week">‹</button><button id="weekNext" aria-label="Next week">›</button></div></div>
+  <div class="week-calendar" id="weekCalendar"></div>
+</section>
+<div class="planner-detail-grid">
+  <section class="day-plan-panel"><div class="day-plan-heading"><div><span class="eyebrow">SELECTED DAY</span><h2 id="selectedDayTitle">Your tasks</h2></div><button class="button button-small" data-open-task><span data-glyph="plus"></span> Add to day</button></div><div id="plannerDayTasks" class="day-agenda-list"></div></section>
+  <aside class="planner-side-note"><span class="planner-note-number">01</span><span class="eyebrow">A GENTLE REMINDER</span><h2>Leave room to breathe.</h2><p>A flexible plan gives you space for breaks, questions and unexpected changes.</p><div class="note-rule"><i></i><i></i><i></i></div></aside>
+</div>
+{% endblock %}

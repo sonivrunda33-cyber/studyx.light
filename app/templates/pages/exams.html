@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="screen-heading exams-heading">
+  <div><span class="eyebrow">COURSE SPACE</span><h1>Stay ready for what’s next.</h1><p>Keep your courses close and give each exam a clear place in your plan.</p></div>
+  <button class="button button-primary" id="addExamButton"><span data-glyph="plus"></span> Add exam date</button>
+</header>
+<section class="exam-overview">
+  <div class="exam-overview-copy"><span class="overview-symbol" data-glyph="book"></span><div><span class="eyebrow">UPCOMING & PAST</span><h2>Your exam schedule</h2><p>Countdowns update automatically from the dates you save.</p></div></div>
+  <div class="exam-summary" id="examSummary"></div>
+</section>
+<div class="exam-grid" id="examGrid"></div>
+<section class="course-library"><div class="course-library-heading"><div><span class="eyebrow">SUBJECTS YOU’RE TAKING</span><h2>Your courses</h2><p>Track the syllabus progress recorded for each course.</p></div><span class="course-caption">COURSE LIBRARY</span></div><div class="course-grid" id="courseList"></div></section>
+<div class="modal-backdrop" id="examModal" aria-hidden="true"><section class="modal glass-panel" role="dialog" aria-modal="true" aria-labelledby="examModalTitle"><div class="modal-head"><div><span class="eyebrow">ADD TO YOUR SCHEDULE</span><h2 id="examModalTitle">Add an exam</h2></div><button class="icon-button" data-close-modal="examModal" aria-label="Close"><span data-glyph="close"></span></button></div><form id="examForm" class="modal-form"><label class="field"><span>Exam title</span><input name="title" required placeholder="e.g. Mid-semester assessment"></label><div class="field-row"><label class="field"><span>Subject</span><input name="subject" required placeholder="e.g. Statistics"></label><label class="field"><span>Date & time</span><input name="exam_at" type="datetime-local" required></label></div><label class="field"><span>Location <em>optional</em></span><input name="location" placeholder="e.g. Hall B · 204"></label><label class="field"><span>Revision notes <em>optional</em></span><textarea name="notes" rows="2" placeholder="Topics to review…"></textarea></label><div class="modal-actions"><button type="button" class="button button-quiet" data-close-modal="examModal">Cancel</button><button class="button button-primary" type="submit"><span data-glyph="check"></span> Save exam</button></div></form></section></div>
+{% endblock %}

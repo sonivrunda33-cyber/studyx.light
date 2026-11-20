@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="screen-heading task-heading">
+  <div><span class="eyebrow">TASK MANAGER</span><h1>Keep your next steps clear.</h1><p>One list for assignments, study blocks and everything you’re working through.</p></div>
+  <button class="button button-primary" data-open-task><span data-glyph="plus"></span> Create task</button>
+</header>
+<div class="task-workspace">
+  <section class="task-board">
+    <div class="task-board-top"><div><span class="eyebrow">MY WORK</span><h2>Tasks & assignments</h2><p id="taskListSubtitle">Tasks from your study plan</p></div><button class="button button-small sort-control" id="sortTasksButton"><span data-glyph="sort"></span> Sort by due</button></div>
+    <div class="task-filterbar" id="taskFilters"><button class="filter-chip active" data-task-filter="all">Everything</button><button class="filter-chip" data-task-filter="todo">To do</button><button class="filter-chip" data-task-filter="done">Completed</button><button class="filter-chip" data-task-filter="high">High priority</button></div>
+    <div id="assignmentList" class="task-list"></div>
+  </section>
+  <aside class="task-side-rail">
+    <section class="course-progress-panel"><div class="side-panel-heading"><span class="eyebrow">YOUR LEARNING</span><a class="muted-link" href="{{ url_for('web.exams') }}">Courses ↗</a></div><h2>Course progress</h2><p class="side-panel-copy">Progress saved in your course list.</p><div id="assignmentCourses" class="course-list"></div></section>
+    <section class="focus-prompt"><span class="prompt-icon" data-glyph="focus"></span><span class="eyebrow">NEED A RESET?</span><h2>Try one focused block.</h2><p>Choose a task and give it 25 minutes of your attention.</p><a href="{{ url_for('web.focus') }}">Open Focus Room <span>↗</span></a></section>
+  </aside>
+</div>
+{% endblock %}

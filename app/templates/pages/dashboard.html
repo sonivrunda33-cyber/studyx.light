@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-top-grid">
+  <section class="welcome-banner">
+    <div class="welcome-copy"><span class="eyebrow" id="todayLabel">YOUR STUDY SPACE</span><h1 id="welcomeTitle">A little progress<br>goes a <span>long way.</span></h1><p id="welcomeCopy">Give today a little structure. You have got this.</p><button class="button button-primary" data-open-task><span data-glyph="plus"></span> Plan a study session</button></div>
+    <div class="welcome-art" aria-hidden="true">
+      <div class="study-note"><span class="study-note-kicker">YOUR STUDY SPACE</span><strong>Small steps<br>add up.</strong><div class="study-note-rule"><i></i><i></i><i></i></div><span class="study-note-mark">✦</span></div>
+      <span class="study-art-orbit orbit-a"></span><span class="study-art-orbit orbit-b"></span><span class="study-art-dot"></span>
+    </div>
+  </section>
+  <section class="panel glass-panel focus-card dashboard-focus-card">
+    <div class="focus-head"><span class="focus-pill"><i></i> FOCUS ROOM</span><span class="focus-mode">25 / 5</span></div>
+    <div class="focus-time">25<span class="focus-time-unit">:00</span></div>
+    <div class="focus-subject">One quiet block, one clear priority.</div>
+    <div class="focus-controls"><a class="button button-primary" href="{{ url_for('web.focus') }}"><span data-glyph="play"></span> Start focus</a></div>
+  </section>
+</div>
+<div class="stat-row" id="dashboardStats">
+  <article class="stat-card glass-panel"><div class="stat-top"><span>Tasks completed</span><span class="stat-icon" data-glyph="check"></span></div><div class="stat-value" id="statCompleted">—</div><div class="stat-foot"><span class="stat-trend" id="statCompletionRate">—</span><span>overall completion</span></div><i class="stat-accent"></i></article>
+  <article class="stat-card glass-panel"><div class="stat-top"><span>Focus this week</span><span class="stat-icon" data-glyph="clock"></span></div><div class="stat-value" id="statWeekHours">—</div><div class="stat-foot"><span>Recorded study time</span></div><i class="stat-accent"></i></article>
+  <article class="stat-card glass-panel"><div class="stat-top"><span>Quiz average</span><span class="stat-icon" data-glyph="check"></span></div><div class="stat-value" id="statQuizAverage">—</div><div class="stat-foot"><span id="statQuizCaption">No quiz attempts saved</span></div><i class="stat-accent"></i></article>
+  <article class="stat-card glass-panel"><div class="stat-top"><span>Roadmap progress</span><span class="stat-icon" data-glyph="chart"></span></div><div class="stat-value" id="statRoadmapProgress">—</div><div class="stat-foot"><span id="statRoadmapCaption">No roadmap saved</span></div><i class="stat-accent"></i></article>
+</div>
+<div class="stat-row stat-row-secondary">
+  <article class="stat-card glass-panel"><div class="stat-top"><span>Study sessions</span><span class="stat-icon" data-glyph="focus"></span></div><div class="stat-value" id="statSessions">—</div><div class="stat-foot"><span>Saved in your planner</span></div><i class="stat-accent"></i></article>
+  <article class="stat-card glass-panel"><div class="stat-top"><span>Learning progress</span><span class="stat-icon" data-glyph="sparkle"></span></div><div class="stat-value" id="statLearningProgress">—</div><div class="stat-foot"><span id="statLearningCaption">No roadmap progress yet</span></div><i class="stat-accent"></i></article>
+  <article class="stat-card glass-panel"><div class="stat-top"><span>Next exam</span><span class="stat-icon" data-glyph="book"></span></div><div class="stat-value" id="statExamDays">—</div><div class="stat-foot" id="statExamName">No exam scheduled</div><i class="stat-accent"></i></article>
+</div>
+<div class="dashboard-grid">
+  <div class="dashboard-main">
+    <section class="panel glass-panel chart-panel"><div class="panel-head"><div><h2 class="panel-title">Your study rhythm</h2><p class="panel-subtitle">Minutes spent focusing over the last seven days</p></div><a class="muted-link" href="{{ url_for('web.insights') }}">View insights <span>↗</span></a></div><div class="chart-meta"><strong id="weekMinutes">0</strong><span>minutes this week</span></div><div id="weeklyChart" class="week-chart" aria-label="Study minutes chart"></div></section>
+    <section class="panel glass-panel agenda-panel"><div class="panel-head"><div><h2 class="panel-title">Coming up</h2><p class="panel-subtitle">Your next few study moments</p></div><a class="muted-link" href="{{ url_for('web.planner') }}">Open planner <span>↗</span></a></div><div class="agenda-list" id="dashboardAgenda"><div class="loading-line"></div></div></section>
+  </div>
+  <div class="dashboard-side">
+    <section class="panel glass-panel mini-week"><div class="panel-head"><div><h2 class="panel-title">This week</h2><p class="panel-subtitle">A gentle look ahead</p></div><a class="muted-link" href="{{ url_for('web.planner') }}">Calendar</a></div><div class="mini-week-days" id="miniWeek"></div></section>
+    <section class="inline-notice"><span class="notice-icon" data-glyph="sparkle"></span><div><strong>Make room for breaks</strong>A short reset can make your next study block feel easier.</div></section>
+  </div>
+</div>
+{% endblock %}

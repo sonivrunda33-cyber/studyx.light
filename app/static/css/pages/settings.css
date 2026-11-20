@@ -1,0 +1,2 @@
+.settings-form{max-width:420px}.settings-card{min-height:180px}
+@media(max-width:620px){.setting-row{align-items:flex-start}.setting-row .button{flex:0 0 auto}}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="screen-heading research-heading"><div><span class="eyebrow">DESIGN THINKING · TEST & LEARN</span><h1>Research, recorded honestly.</h1><p>Collect genuine student feedback and compare the planning process with the prototype.</p></div><div class="export-actions"><a class="button" href="/api/export/feedback.csv"><span data-glyph="download"></span> Survey CSV</a><a class="button" href="/api/export/usability.csv"><span data-glyph="download"></span> Test CSV</a></div></header>
+<nav class="research-journey" aria-label="Design Thinking stages"><span><i>01</i> Empathize</span><b></b><span><i>02</i> Define</span><b></b><span><i>03</i> Ideate</span><b></b><span><i>04</i> Prototype</span><b></b><span class="journey-current"><i>05</i> Test</span></nav>
+<div class="research-integrity-note"><span class="notice-icon" data-glyph="info"></span><div><strong>Use real participants and protect their identity.</strong><p>Use anonymous codes such as P01. The research summaries below update only from responses saved to the database.</p></div></div>
+<div class="research-workspace">
+  <main class="research-forms">
+    <section class="research-form-panel" id="baselineSurvey">
+      <div class="research-section-head"><span class="research-section-index">A</span><div><span class="eyebrow">BASELINE FEEDBACK</span><h2>How do students plan today?</h2><p>Collect current-method feedback before participants try the prototype.</p></div><span class="research-count" id="surveyCount">0 / 30 responses</span></div>
+      <form id="surveyForm" class="research-form">
+        <div class="form-grid">
+          <label class="field"><span>What is your biggest planning challenge? <em>multiple choice</em></span><select name="primary_challenge" required><option value="">Choose one…</option><option>Forgetting deadlines</option><option>Choosing what to study first</option><option>Estimating how long tasks take</option><option>Balancing study and other activities</option><option>Staying focused</option><option>Other</option></select></label>
+          <label class="field"><span>How do you currently plan? <em>multiple choice</em></span><select name="planning_method" required><option value="">Choose one…</option><option>Paper planner</option><option>Calendar app</option><option>Task app</option><option>Notes or messages</option><option>I do not plan consistently</option><option>Other</option></select></label>
+          <label class="field"><span>Tasks missed or late in the last month</span><input type="number" name="missed_tasks" min="0" max="100" value="0" required></label>
+          <label class="field"><span>Usual weekly planning time · hours</span><input type="number" name="current_method_hours" min="0" max="168" step="0.25" value="1" required></label>
+          <label class="field"><span>How difficult is your study plan? <em>1 easy · 5 difficult</em></span><div class="likert-inline"><label><input type="radio" name="planning_difficulty" value="1" required><span>1</span></label><label><input type="radio" name="planning_difficulty" value="2"><span>2</span></label><label><input type="radio" name="planning_difficulty" value="3"><span>3</span></label><label><input type="radio" name="planning_difficulty" value="4"><span>4</span></label><label><input type="radio" name="planning_difficulty" value="5"><span>5</span></label></div></label>
+          <label class="field"><span>How satisfied are you with it? <em>1 low · 5 high</em></span><div class="likert-inline"><label><input type="radio" name="satisfaction" value="1" required><span>1</span></label><label><input type="radio" name="satisfaction" value="2"><span>2</span></label><label><input type="radio" name="satisfaction" value="3"><span>3</span></label><label><input type="radio" name="satisfaction" value="4"><span>4</span></label><label><input type="radio" name="satisfaction" value="5"><span>5</span></label></div></label>
+        </div>
+        <label class="field"><span>What makes planning hard for you? <em>optional</em></span><textarea name="feedback" rows="3" maxlength="1000" placeholder="Share one example from a usual study week…"></textarea></label>
+        <label class="consent-check"><input type="checkbox" name="consent_confirmed" value="1" required><span>Participant agreed to share this anonymous survey response.</span></label>
+        <div class="research-form-actions"><span class="form-hint">Responses are saved to this project’s database.</span><button class="button button-primary" type="submit"><span data-glyph="send"></span> Save response</button></div>
+      </form>
+    </section>
+    <section class="research-form-panel" id="pairedTest">
+      <div class="research-section-head"><span class="research-section-index">B</span><div><span class="eyebrow">PAIRED USABILITY TEST</span><h2>Compare the same task two ways.</h2><p>Record both methods for the same participant and task.</p></div><span class="research-count">Anonymous codes</span></div>
+      <form id="usabilityForm" class="research-form">
+        <div class="research-callout compact"><span class="research-callout-icon" data-glyph="users"></span><div><strong>Keep the task and instructions consistent.</strong><p>Compare current-method results with prototype results for the same person.</p></div></div>
+        <div class="form-grid">
+          <label class="field"><span>Participant code</span><input name="participant_code" required placeholder="e.g. P01" maxlength="40"></label>
+          <label class="field"><span>Prototype satisfaction · 1–5</span><select name="satisfaction" required><option value="">Choose…</option><option value="1">1 · Very low</option><option value="2">2 · Low</option><option value="3">3 · Neutral</option><option value="4">4 · High</option><option value="5">5 · Very high</option></select></label>
+          <label class="field"><span>Current method · minutes</span><input type="number" name="baseline_minutes" min="0.1" max="600" step="0.1" required></label>
+          <label class="field"><span>Prototype · minutes</span><input type="number" name="prototype_minutes" min="0.1" max="600" step="0.1" required></label>
+          <label class="field"><span>Current method · task success</span><select name="baseline_success"><option value="1">Completed</option><option value="0">Not completed</option></select></label>
+          <label class="field"><span>Prototype · task success</span><select name="prototype_success"><option value="1">Completed</option><option value="0">Not completed</option></select></label>
+          <label class="field"><span>Current method · errors</span><input type="number" name="baseline_errors" min="0" max="1000" value="0"></label>
+          <label class="field"><span>Prototype · errors</span><input type="number" name="prototype_errors" min="0" max="1000" value="0"></label>
+        </div>
+        <div class="sus-heading"><div><h3>System Usability Scale</h3><p>Ask after the participant tries the prototype. 1 = strongly disagree · 5 = strongly agree.</p></div></div>
+        <div id="susQuestions" class="sus-question-list"></div>
+        <label class="field"><span>Observed issue or note <em>optional</em></span><textarea name="notes" rows="2" maxlength="1000" placeholder="Record usability issues, not participant identity…"></textarea></label>
+        <label class="consent-check"><input type="checkbox" name="consent_confirmed" value="1" required><span>Participant agreed to this anonymous usability test and feedback record.</span></label>
+        <div class="research-form-actions"><span class="form-hint">Each participant is compared with themselves.</span><button class="button button-primary" type="submit"><span data-glyph="save"></span> Save test result</button></div>
+      </form>
+    </section>
+  </main>
+  <aside class="research-dashboard">
+    <section class="research-live-panel"><span class="eyebrow">LIVE RESEARCH DATA</span><h2>Saved responses</h2><p class="panel-subtitle">Calculated from records in this account.</p><div class="research-stat-grid"><div class="report-stat"><small>Survey responses</small><strong id="researchSurveyN">0</strong><em>target: 30</em></div><div class="report-stat"><small>Mean SUS</small><strong id="researchSus">—</strong><em>0–100 scale</em></div><div class="report-stat"><small>Usability pairs</small><strong id="researchPairs">0</strong><em>target: 10+</em></div></div>
+      <div class="analysis-block"><h3>Current method vs prototype</h3><div id="pairedSummary" class="empty-report">Save paired measurements to calculate the comparison.</div></div>
+      <div class="analysis-block"><h3>Most selected challenge</h3><div id="challengeSummary" class="empty-report">No survey responses yet.</div></div>
+      <div class="analysis-block"><h3>Survey descriptives</h3><div id="surveyStats" class="empty-report">Save responses to calculate averages.</div></div>
+      <div class="analysis-block"><h3>Prototype usage</h3><div id="usageSummary" class="empty-report">No interaction events recorded yet.</div></div>
+    </section>
+    <section class="analysis-plan-panel"><span class="eyebrow">ANALYSIS PLAN</span><h2>Use a suitable comparison.</h2><div class="hypothesis"><b>H₀ · no improvement</b><span>Average task time is not lower with the prototype.</span></div><div class="hypothesis"><b>H₁ · improvement</b><span>Average task time is lower with the prototype.</span></div><ul class="research-guidance"><li>Use a paired t-test when differences are suitable.</li><li>Use Wilcoxon signed-rank when paired differences are non-normal.</li><li>Report effect size, confidence interval and limitations.</li><li>Do not treat demo activity as study evidence.</li></ul></section>
+  </aside>
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6fb">
+  <meta name="description" content="StudyX AI — a calmer space to plan, focus and make progress.">
+  <title>{{ page_title }} · StudyX AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/' + page + '.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/effects.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/premium-light.css') }}">
+</head>
+<body data-page="{{ page }}" data-account-name="{{ session.get('display_name', 'Student') }}">
+  <div class="app-loader" id="appLoader" aria-hidden="true"><div class="loader-orbit"><span class="brand-mark"><i></i><i></i><i></i></span></div><strong>StudyX <span>AI</span></strong><small>Preparing your study space</small><div class="loader-track"><i></i></div></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="{{ url_for('web.dashboard') }}" aria-label="StudyX AI home">
+        <span class="brand-mark"><i></i><i></i><i></i></span><span class="brand-name">StudyX<span> AI</span></span>
+      </a>
+      <button class="workspace-switch"><span class="workspace-avatar">✦</span><span class="workspace-copy"><strong>Personal workspace</strong><small>Your learning home</small></span><span class="chevron">⌄</span></button>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a class="nav-link {{ 'active' if page == 'dashboard' else '' }}" href="{{ url_for('web.dashboard') }}"><span class="nav-icon" data-glyph="grid"></span><span>Overview</span><i class="nav-active-dot"></i></a>
+        <a class="nav-link {{ 'active' if page == 'planner' else '' }}" href="{{ url_for('web.planner') }}"><span class="nav-icon" data-glyph="calendar"></span><span>Study planner</span></a>
+        <a class="nav-link {{ 'active' if page == 'assignments' else '' }}" href="{{ url_for('web.assignments') }}"><span class="nav-icon" data-glyph="checklist"></span><span>Assignments</span><span class="nav-count" id="navTaskCount">0</span></a>
+        <a class="nav-link {{ 'active' if page == 'exams' else '' }}" href="{{ url_for('web.exams') }}"><span class="nav-icon" data-glyph="book"></span><span>Exams & courses</span></a>
+        <a class="nav-link {{ 'active' if page == 'focus' else '' }}" href="{{ url_for('web.focus') }}"><span class="nav-icon" data-glyph="focus"></span><span>Focus room</span></a>
+      </nav>
+      <div class="nav-label nav-label-spaced">INSIGHTS</div>
+      <nav class="primary-nav" aria-label="Insights navigation">
+        <a class="nav-link {{ 'active' if page == 'insights' else '' }}" href="{{ url_for('web.insights') }}"><span class="nav-icon" data-glyph="chart"></span><span>My progress</span></a>
+        <a class="nav-link {{ 'active' if page == 'research' else '' }}" href="{{ url_for('web.research') }}"><span class="nav-icon" data-glyph="flask"></span><span>Research lab</span><span class="nav-new">TEAM</span></a>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-note glass-inset"><span class="note-spark">✳</span><div><strong>Make today count.</strong><small>A little focus goes a long way.</small></div></div>
+      <a class="nav-link settings-link {{ 'active' if page == 'settings' else '' }}" href="{{ url_for('web.settings') }}"><span class="nav-icon" data-glyph="settings"></span><span>Settings</span></a>
+      <form class="profile-card-wrap" method="post" action="{{ url_for('web.logout') }}"><span class="profile-avatar" id="profileInitial">{{ session.get('display_name', 'Student')[:1]|upper }}</span><span class="profile-copy"><strong id="profileName">{{ session.get('display_name', 'Student') }}</strong><small>StudyX AI account</small></span><button class="profile-more" type="submit" aria-label="Sign out" title="Sign out">↗</button></form>
+    </aside>
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="menuButton" aria-label="Open navigation"><span data-glyph="menu"></span></button>
+        <div class="breadcrumb"><span>Workspace</span><i>/</i><strong>{{ page_title }}</strong></div>
+        <div class="topbar-actions">
+          <label class="search-box"><span data-glyph="search"></span><input id="globalSearch" type="search" placeholder="Search tasks and exams…" aria-label="Search tasks and exams"><kbd>⌘ K</kbd></label>
+          <button class="icon-button notification-button" id="notificationButton" aria-label="Notifications"><span data-glyph="bell"></span><i></i></button>
+          <button class="top-avatar" id="topInitial" aria-label="Profile">{{ session.get('display_name', 'Student')[:1]|upper }}</button>
+        </div>
+      </header>
+      <div class="mobile-scrim" id="mobileScrim"></div>
+      <section class="page-content" id="pageContent">{% block content %}{% endblock %}</section>
+      <footer class="app-footer"><span>© 2026 StudyX AI</span><span><i class="status-dot"></i> Your project data stays local</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="taskModal" aria-hidden="true">
+    <section class="modal glass-panel" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle">
+      <div class="modal-head"><div><span class="eyebrow">MAKE IT HAPPEN</span><h2 id="taskModalTitle">Add a task</h2></div><button class="icon-button close-modal" data-close-modal="taskModal" aria-label="Close dialog"><span data-glyph="close"></span></button></div>
+      <form id="taskForm" class="modal-form">
+        <input type="hidden" name="id">
+        <label class="field full-field"><span>What needs your attention?</span><input name="title" required maxlength="120" placeholder="e.g. Review chapter 4"></label>
+        <div class="field-row"><label class="field"><span>Subject</span><input name="subject" required maxlength="80" placeholder="e.g. Statistics"></label><label class="field"><span>Type</span><select name="kind"><option value="study">Study session</option><option value="assignment">Assignment</option><option value="reading">Reading</option><option value="personal">Personal</option></select></label></div>
+        <div class="field-row"><label class="field"><span>Due date & time</span><input name="due_at" type="datetime-local"></label><label class="field"><span>Planned time · min</span><input name="duration_minutes" type="number" min="5" max="600" value="45" required></label></div>
+        <label class="field"><span>Priority</span><div class="priority-options"><label><input type="radio" name="priority" value="low"><span>Low</span></label><label><input type="radio" name="priority" value="medium" checked><span>Medium</span></label><label><input type="radio" name="priority" value="high"><span>High</span></label></div></label>
+        <label class="field"><span>Notes <em>optional</em></span><textarea name="notes" rows="2" maxlength="500" placeholder="Add a little context…"></textarea></label>
+        <div class="modal-actions"><button type="button" class="button button-quiet" data-close-modal="taskModal">Cancel</button><button type="submit" class="button button-primary"><span data-glyph="sparkle"></span><span id="taskSubmitLabel">Add to my plan</span></button></div>
+      </form>
+    </section>
+  </div>
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+  <script type="module" src="{{ url_for('static', filename='js/core/visual-effects.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

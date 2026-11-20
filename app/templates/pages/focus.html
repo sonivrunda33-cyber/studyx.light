@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="screen-heading focus-heading"><div><span class="eyebrow">FOCUS STUDIO</span><h1>Quiet the noise. Begin.</h1><p>Choose a session length and subject, then let the timer hold your place.</p></div><span class="focus-status-badge"><i></i> PRIVATE STUDY SPACE</span></header>
+<div class="focus-workbench">
+  <section class="focus-console">
+    <div class="timer-mode" id="timerModes"><button class="active" data-minutes="25" data-break="5">25 min focus</button><button data-minutes="50" data-break="10">50 min deep work</button><button data-minutes="15" data-break="5">15 min short block</button></div>
+    <div class="timer-ring" id="timerRing"><div class="timer-inner"><div class="timer-display" id="timerDisplay">25:00</div><div class="timer-label" id="timerLabel">READY WHEN YOU ARE</div></div></div>
+    <div class="timer-controls"><button class="button button-primary" id="timerStart"><span data-glyph="play"></span> Start focus</button><button class="button" id="timerStop" disabled>Finish early</button><button class="button" id="timerReset"><span data-glyph="rotate"></span> Reset</button></div>
+    <label class="timer-subject"><span data-glyph="book"></span> STUDYING<select id="focusSubject"><option value="Independent study">Independent study</option></select></label>
+  </section>
+  <aside class="focus-sidebar">
+    <section class="focus-stat-stack"><span class="eyebrow">YOUR RECORDED FOCUS</span><h2>Session history</h2><div class="session-stat"><span>Sessions recorded</span><strong id="focusTotalSessions">0</strong></div><div class="session-stat"><span>Total study time</span><strong id="focusTotalMinutes">0 min</strong></div><div class="session-stat"><span>Today</span><strong id="focusTodayMinutes">0 min</strong></div></section>
+    <section class="focus-history-panel"><div class="side-panel-heading"><div><span class="eyebrow">RECENT ACTIVITY</span><h2>Recent sessions</h2></div><a class="muted-link" href="{{ url_for('web.insights') }}">Progress ↗</a></div><div id="focusHistory"></div></section>
+    <div class="focus-reset-note"><span class="prompt-icon" data-glyph="sparkle"></span><p>Take a short reset between blocks. A pause is part of focused work.</p></div>
+  </aside>
+</div>
+{% endblock %}

@@ -1,0 +1,3 @@
+.timer-mode button:hover{color:#e2d9ff}.timer-controls .button-primary{min-width:135px}
+@media(max-width:760px){.timer-controls{flex-wrap:wrap}}
+@media(max-width:620px){.focus-session-panel{min-height:400px;padding:22px 12px}.timer-ring{width:225px;height:225px}.timer-display{font-size:46px}.timer-mode button{padding:6px 8px;font-size:8px}.session-side{grid-template-columns:1fr}.session-side>.session-history{grid-column:auto}}

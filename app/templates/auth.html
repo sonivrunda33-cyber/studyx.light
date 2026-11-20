@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6fb">
+  <meta name="description" content="Sign in to your StudyX AI student planner.">
+  <title>{{ 'Create your account' if mode == 'signup' else 'Welcome back' }} · StudyX AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/effects.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/premium-light.css') }}">
+</head>
+<body class="auth-body">
+  <div class="app-loader" id="appLoader" aria-hidden="true"><div class="loader-orbit"><span class="brand-mark"><i></i><i></i><i></i></span></div><strong>StudyX <span>AI</span></strong><small>Preparing your study space</small><div class="loader-track"><i></i></div></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <main class="auth-layout">
+    <header class="auth-topbar"><a class="auth-brand" href="{{ url_for('web.login') }}" aria-label="StudyX AI"><span class="brand-mark"><i></i><i></i><i></i></span><span>StudyX <span>AI</span></span></a><span class="auth-top-note"><i></i> A clearer way to study</span></header>
+    <section class="auth-story">
+      <div class="story-copy">
+        <span class="eyebrow">YOUR PERSONAL STUDY SPACE</span>
+        <h1>Learn with more<br><span>focus and flow.</span></h1>
+        <p>Plan your week, keep important work moving and see the progress you’ve actually recorded.</p>
+      </div>
+      <div class="story-art" aria-hidden="true">
+        <div class="story-board"><div class="story-board-top"><span class="story-board-dot"></span><span class="story-board-dot"></span><span class="story-board-dot"></span></div><div class="story-board-line wide"></div><div class="story-board-line"></div><div class="story-board-line short"></div><div class="story-board-block"><i>✦</i><span>Make a little progress today</span></div></div>
+        <span class="story-orbit orbit-one"></span><span class="story-orbit orbit-two"></span><span class="story-star star-one">✦</span><span class="story-star star-two">✧</span>
+      </div>
+      <div class="story-feature-row"><div><span>01</span><strong>Plan</strong><small>Make the week yours</small></div><div><span>02</span><strong>Focus</strong><small>Give one thing your time</small></div><div><span>03</span><strong>Reflect</strong><small>See your saved progress</small></div></div>
+    </section>
+    <section class="auth-side">
+      <div class="auth-card glass-panel">
+        <div class="auth-card-head"><span class="eyebrow">{{ 'GET STARTED' if mode == 'signup' else 'WELCOME BACK' }}</span><h2>{{ 'Create your account' if mode == 'signup' else 'Sign in to StudyX' }}</h2><p>{{ 'Your personal study space starts with a few details.' if mode == 'signup' else 'Continue with the account you already use.' }}</p></div>
+        {% if error %}<div class="auth-error" role="alert"><span>!</span>{{ error }}</div>{% endif %}
+        <form class="auth-form" method="post" action="{{ url_for('web.signup') if mode == 'signup' else url_for('web.login') }}" data-page-transition>
+          <input type="hidden" name="next" value="{{ next_path }}">
+          {% if mode == 'signup' %}<label class="field"><span>Your name</span><input name="display_name" type="text" autocomplete="name" minlength="2" maxlength="60" required placeholder="e.g. Aisha Sharma" value="{{ request.form.get('display_name', '') }}"></label>{% endif %}
+          <label class="field"><span>Email address</span><input name="email" type="email" autocomplete="email" maxlength="160" required placeholder="you@college.edu" value="{{ request.form.get('email', '') }}"></label>
+          <label class="field"><span>Password</span><span class="password-control"><input name="password" type="password" autocomplete="{{ 'new-password' if mode == 'signup' else 'current-password' }}" minlength="{{ 8 if mode == 'signup' else 1 }}" required placeholder="{{ 'At least 8 characters' if mode == 'signup' else 'Enter your password' }}"><button class="password-toggle" type="button" aria-label="Show password" data-password-toggle>Show</button></span></label>
+          {% if mode == 'signup' %}<label class="field"><span>Confirm password</span><input name="confirm_password" type="password" autocomplete="new-password" minlength="8" required placeholder="Enter your password again"></label>{% endif %}
+          {% if mode == 'login' %}<div class="auth-hint"><span class="hint-check">✳</span><span>Your study tasks and progress are saved with your account.</span></div>{% endif %}
+          <button class="button button-primary auth-submit" type="submit"><span>{{ 'Create my account' if mode == 'signup' else 'Sign in to StudyX AI' }}</span><b>↗</b></button>
+        </form>
+        <div class="auth-switch"><span>{{ 'Already have an account?' if mode == 'signup' else 'New to StudyX AI?' }}</span><a href="{{ url_for('web.login') if mode == 'signup' else url_for('web.signup') }}">{{ 'Sign in' if mode == 'signup' else 'Create an account' }} <span>→</span></a></div>
+      </div>
+      <div class="auth-privacy"><span class="privacy-lock">⌑</span><span>Your planner is personal. Your account data stays in the project database.</span></div>
+    </section>
+  </main>
+  <script type="module" src="{{ url_for('static', filename='js/core/visual-effects.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+.section-panel{min-height:330px}.section-grid>.dashboard-side{align-content:start}
+.task-row{grid-template-columns:18px minmax(0,1fr) auto auto 54px}
+@media(max-width:620px){.task-row{grid-template-columns:17px minmax(0,1fr) auto;gap:8px;min-height:70px}.task-due{grid-column:2;grid-row:2}.priority-tag{grid-column:3;grid-row:1}.task-actions{grid-column:3;grid-row:2;opacity:1}}

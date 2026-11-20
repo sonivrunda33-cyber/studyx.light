@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="screen-heading insights-heading"><div><span class="eyebrow">YOUR ACTIVITY, OVER TIME</span><h1>Progress you can see.</h1><p>Explore recorded study sessions and task completion from your planner.</p></div><a class="button" href="{{ url_for('web.research') }}">Open Research Lab <span>↗</span></a></header>
+<div class="insight-overview">
+  <section class="weekly-study-panel"><div class="insight-panel-heading"><div><span class="eyebrow">STUDY RHYTHM</span><h2>Minutes across the last seven days</h2></div><span class="chart-legend"><i></i> Focus time</span></div><div class="weekly-total"><strong id="insightWeekMinutes">0</strong><span>minutes recorded</span></div><div id="insightsChart" class="week-chart tall-chart"></div></section>
+  <section class="completion-panel"><span class="eyebrow">TASK COMPLETION</span><h2>Every finished step counts.</h2><div class="progress-ring" id="taskProgressRing"><div class="ring-copy"><strong id="taskProgressValue">0%</strong><span>COMPLETE</span></div></div><p class="progress-caption" id="taskProgressCaption">Add a task to start tracking progress.</p></section>
+</div>
+<div class="insight-details">
+  <section class="recent-activity-panel"><div class="insight-panel-heading"><div><span class="eyebrow">RECENT ACTIVITY</span><h2>Focus sessions</h2></div><a class="muted-link" href="{{ url_for('web.focus') }}">Open Focus Room ↗</a></div><div id="insightsSessions" class="session-table"></div></section>
+  <section class="subject-breakdown-panel"><div class="insight-panel-heading"><div><span class="eyebrow">TIME BY SUBJECT</span><h2>Where you’ve focused</h2></div></div><p class="panel-subtitle">Based on your recorded focus sessions.</p><div id="subjectBreakdown" class="subject-stats"></div></section>
+</div>
+<aside class="research-integrity-note"><span class="notice-icon" data-glyph="info"></span><div><strong>Use the numbers in context.</strong><p>These summaries describe activity saved in the planner. They do not by themselves show that the planner caused a change.</p></div></aside>
+{% endblock %}

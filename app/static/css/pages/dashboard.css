@@ -1,0 +1,2 @@
+.dashboard-grid{margin-top:0}.agenda-list{min-height:115px}
+@media(max-width:620px){.welcome-banner{min-height:194px;padding:22px 20px}.welcome-copy{max-width:82%}.welcome-copy h1{max-width:255px;font-size:29px}.welcome-copy p{max-width:230px}.welcome-orbit{right:-76px;opacity:.7;transform:translateY(-50%) scale(.82)}.stat-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stat-card{min-height:100px;padding:12px}.stat-top{font-size:9px}.stat-value{font-size:23px}.dashboard-side{grid-template-columns:1fr}.week-chart{height:145px}}
